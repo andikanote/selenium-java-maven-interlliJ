@@ -41,7 +41,6 @@ public class SeleniumTest {
         WebElement MessageResetSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("p.infoMsg")));
         System.out.println("Message Success Reset : " + MessageResetSuccess.getText());
 
-        // Close the driver
         driver.quit();
     }
 }
