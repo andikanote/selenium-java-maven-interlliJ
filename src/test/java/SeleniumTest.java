@@ -8,13 +8,12 @@ import java.time.Duration;
 
 public class SeleniumTest {
 
-    private static WebDriverWait wait; // Declare WebDriverWait as a class-level variable
-
     public static void main(String[] args) {
-
         ChromeDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Initialize it here
+
+        // Declare WebDriverWait as a local variable
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Initialize it here
 
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
 
@@ -22,7 +21,8 @@ public class SeleniumTest {
         driver.findElement(By.id("inputUsername")).sendKeys("Eduwork");
         driver.findElement(By.name("inputPassword")).sendKeys("CourseEduwork");
         driver.findElement(By.className("submit")).click();
-        // Use the global wait instance
+
+        // Use the local wait instance
         WebElement elementMessageIncorrect = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("p.error")));
         System.out.println("Message Incorrect : " + elementMessageIncorrect.getText());
@@ -33,7 +33,7 @@ public class SeleniumTest {
         driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("andika@eduwork.com");
         driver.findElement(By.cssSelector("input[placeholder='Phone Number']")).sendKeys("081239283922");
 
-        // Use the global wait instance again
+        // Use the local wait instance again
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("button.reset-pwd-btn")));
         WebElement buttonResetLogin = driver.findElement(By.cssSelector("button.reset-pwd-btn"));
         buttonResetLogin.click();
